@@ -1,21 +1,24 @@
+
+// 同じ文字列があったら一致した文字列を返す
 function longestCommonPrefix(strs: string[]): string {
     if (strs.length === 0) return "";
 
     let prefix = strs[0];
 
-    for (const str of strs.slice(1)) {
+    strs.slice(1).forEach((str: string) => {
         while (str.indexOf(prefix) !== 0) {
             prefix = prefix.substring(0, prefix.length - 1);
             if (prefix === "") return "";
         }
-    }
+    });
 
     return prefix;
 };
 
-console.log(longestCommonPrefix(["aflower","eflow","tflight"]));
-console.log(longestCommonPrefix(["dog","racecar","car"]));
+// console.log(longestCommonPrefix(["aflower","eflow","tflight"]));
+// console.log(longestCommonPrefix(["dog","racecar","car"]));
 
+// ローマ数字をアラビア数字に変換する
 function romanToIntWithForEach(s: string): number {
     const romanMap: { [key: string]: number } = {
         I: 1,
@@ -28,8 +31,7 @@ function romanToIntWithForEach(s: string): number {
     };
 
     let result = 0;
-    // 文字列を一文字ずつの配列に分割し、forEachメソッドで処理
-    s.split('').forEach((currentChar, index) => {
+    s.split('').forEach((currentChar: string, index: number):void => {
         const current = romanMap[currentChar];
         const nextChar = s[index + 1];
         const next = romanMap[nextChar];
@@ -44,11 +46,12 @@ function romanToIntWithForEach(s: string): number {
     return result;
 };
 
-console.log(romanToIntWithForEach("III"));
-console.log(romanToIntWithForEach("LVIII"));
-console.log(romanToIntWithForEach("MCMXCIV"));
+// console.log(romanToIntWithForEach("III"));
+// console.log(romanToIntWithForEach("LVIII"));
+// console.log(romanToIntWithForEach("MCMXCIV"));
 
 
+// 2個配列をくっつけてソートして中央値を返す
 function findMedianSortedArrays(nums1: number[], nums2: number[]): number {
     const nums = [...nums1, ...nums2].sort((a, b) => a - b);
     const center = Math.floor(nums.length / 2);
@@ -61,9 +64,10 @@ function findMedianSortedArrays(nums1: number[], nums2: number[]): number {
 
 };
 
-console.log(findMedianSortedArrays([1,3], [2]));
-console.log(findMedianSortedArrays([1,2], [3,4]));
+// console.log(findMedianSortedArrays([1,3], [2]));
+// console.log(findMedianSortedArrays([1,2], [3,4]));
 
+// 数字が逆になっても同じならtrueを返す
 function isPalindrome(x: number): boolean {
     if (x < 0) return false;
 
@@ -71,7 +75,39 @@ function isPalindrome(x: number): boolean {
     return x === reversed;
 };
 
-console.log(isPalindrome(121));
-console.log(isPalindrome(-121));
-console.log(isPalindrome(10));
-console.log(isPalindrome(-101));
+// console.log(isPalindrome(121));
+// console.log(isPalindrome(-121));
+// console.log(isPalindrome(10));
+// console.log(isPalindrome(-101));
+
+
+// 組み合わせが正しい括弧かどうかを判定する
+function isValid(s: string): boolean {
+    const stack: string[] = [];
+    const bracketMap: { [key: string]: string } = {
+        "(": ")",
+        "{": "}",
+        "[": "]"
+    };
+
+    for (let i = 0; i < s.length; i++) {
+        const current = s[i];
+
+        if (bracketMap[current]) {
+            stack.push(current);
+        } else {
+            const last: string | undefined = stack.pop(); // Use union type to handle possible undefined
+            if (last === undefined || bracketMap[last] !== current) {
+                return false;
+            }
+        }
+    }
+
+    return stack.length === 0;
+
+};
+
+console.log(isValid("()"));
+console.log(isValid("()[]{}"));
+console.log(isValid("(]"));
+console.log(isValid("]"));
