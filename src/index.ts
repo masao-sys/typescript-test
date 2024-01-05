@@ -15,8 +15,8 @@ function longestCommonPrefix(strs: string[]): string {
     return prefix;
 };
 
-// console.log(longestCommonPrefix(["aflower","eflow","tflight"]));
-// console.log(longestCommonPrefix(["dog","racecar","car"]));
+console.log(longestCommonPrefix(["aflower","eflow","tflight"]));
+console.log(longestCommonPrefix(["dog","racecar","car"]));
 
 // ローマ数字をアラビア数字に変換する
 function romanToIntWithForEach(s: string): number {
@@ -46,9 +46,9 @@ function romanToIntWithForEach(s: string): number {
     return result;
 };
 
-// console.log(romanToIntWithForEach("III"));
-// console.log(romanToIntWithForEach("LVIII"));
-// console.log(romanToIntWithForEach("MCMXCIV"));
+console.log(romanToIntWithForEach("III"));
+console.log(romanToIntWithForEach("LVIII"));
+console.log(romanToIntWithForEach("MCMXCIV"));
 
 
 // 2個配列をくっつけてソートして中央値を返す
@@ -64,8 +64,8 @@ function findMedianSortedArrays(nums1: number[], nums2: number[]): number {
 
 };
 
-// console.log(findMedianSortedArrays([1,3], [2]));
-// console.log(findMedianSortedArrays([1,2], [3,4]));
+console.log(findMedianSortedArrays([1,3], [2]));
+console.log(findMedianSortedArrays([1,2], [3,4]));
 
 // 数字が逆になっても同じならtrueを返す
 function isPalindrome(x: number): boolean {
@@ -75,10 +75,10 @@ function isPalindrome(x: number): boolean {
     return x === reversed;
 };
 
-// console.log(isPalindrome(121));
-// console.log(isPalindrome(-121));
-// console.log(isPalindrome(10));
-// console.log(isPalindrome(-101));
+console.log(isPalindrome(121));
+console.log(isPalindrome(-121));
+console.log(isPalindrome(10));
+console.log(isPalindrome(-101));
 
 
 // 組み合わせが正しい括弧かどうかを判定する
@@ -127,3 +127,39 @@ function removeDuplicates(nums: number[]): number {
 
 console.log(removeDuplicates([1,1,2]));
 console.log(removeDuplicates([0,0,1,1,1,2,2,3,3,4]));
+
+// 配列から指定した値を削除する
+function removeElement(nums: number[], val: number): number {
+    let i = 0;
+    for (let j = 0; j < nums.length; j ++) {
+        if (nums[j] !== val) {
+            nums[i] = nums[j];
+            i ++;
+        }
+    }
+
+    return i;
+
+};
+
+console.log(removeElement([3,2,2,3], 3));
+console.log(removeElement([0,1,2,2,3,0,4,2], 2));
+
+
+// 同じ文字列があったら一致したindexを返す
+function strStr(haystack: string, needle: string): number {
+    if (needle.length === 0) return 0;
+
+    for (let i = 0; i < haystack.length; i ++) {
+        if (haystack[i] === needle[0]) {
+            if (haystack.slice(i, i + needle.length) === needle) {
+                return i;
+            }
+        }
+    }
+
+    return -1;
+};
+
+console.log(strStr("hello", "ll"));
+console.log(strStr("aaaaa", "bba"));
